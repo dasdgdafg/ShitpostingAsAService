@@ -1,0 +1,6 @@
+*.exe
+*.state
+password.txt
+logs/*
+avoid/*
+input/*
