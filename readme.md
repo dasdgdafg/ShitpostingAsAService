@@ -9,6 +9,11 @@ Sed replacements on the most recent matching line
 
 Currently only searches 10 lines back, and returns the first line that matches.  This uses the `--sandbox` flag which was added to sed in 2016, so you may need to update your sed for this to work.
 
+#### !christmas
+Tells you how many days until Christmas
+
+Also posts a random link to an image of someone wearing a santa hat.
+
 ### Examples
 (Using the sample logs for #test)
 >\<dasdgdafg> !shitpost  
