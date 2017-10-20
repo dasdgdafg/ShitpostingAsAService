@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-const botName = "testpostingAsAService"
+const botName = "ShitpostingAsAService"
 const ident = "always"
 const realname = "dasdgdafg"
 
