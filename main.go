@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-const botName = "ShitpostingAsAService"
+const botName = "testpostingAsAService"
 const ident = "always"
 const realname = "dasdgdafg"
 
@@ -24,6 +24,8 @@ var s_h_i_t_p_o_s_t_R_e_g_e_x = regexp.MustCompile("^(\\d,?\\d?)?(>)? ?! ?s h i
 
 var messages = make(map[string][]string)
 var sedRegex = regexp.MustCompile("^s/.*/.*/.*$")
+
+var xmasRegex = regexp.MustCompile("^(\\d,?\\d?)?(>)?!(?:c|C)hristmas$")
 
 func processLine(linesToSend chan<- string, nick string, channel string, msg string) {
 	if chains[channel] != nil {
@@ -57,6 +59,15 @@ func processLine(linesToSend chan<- string, nick string, channel string, msg str
 		if len(messages[channel]) > 10 {
 			messages[channel] = messages[channel][1:]
 		}
+	}
+	if xmasRegex.MatchString(msg) {
+		matches := xmasRegex.FindStringSubmatch(msg)
+		line := xmas()
+		if len(matches) > 1 {
+			toAdd := matches[1:]
+			line = strings.Join(toAdd, "") + line
+		}
+		linesToSend <- "PRIVMSG " + channel + " :" + line
 	}
 }
 
