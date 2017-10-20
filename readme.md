@@ -27,3 +27,7 @@ Currently only searches 10 lines back, and returns the first line that matches. 
 >\<dasdgdafg> foo bar  
 >\<dasdgdafg> s/bar/baz/  
 >\<ShitpostingAsAService> \<dasdgdafg> HAHAHA DISREGARD THAT, I SUCK COCKS  
+  
+  
+>\<dasdgdafg> !christmas  
+>\<ShitpostingAsAService> 67 days until Christmas https://a.safe.moe/fkn4t.png 
