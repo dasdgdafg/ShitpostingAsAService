@@ -12,7 +12,7 @@ Currently only searches 10 lines back, and returns the first line that matches. 
 #### !christmas
 Tells you how many days until Christmas
 
-Also posts a random link to an image of someone wearing a santa hat.
+Also posts a random link from a text file.  Make a file with the links (to, for example, an image of someone wearing a santa hat), and name it christmas.txt.  
 
 ### Examples
 (Using the sample logs for #test)
