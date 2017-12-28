@@ -87,7 +87,7 @@ func rollApprox(sidesPerDie int64, numberOfDice int64) *big.Int {
 
 	// convert to the desired distribution
 	// x * stddev + mean
-	x.Mul(x, stddev)
+	x = stddev.Mul(x, stddev)
 	x.Add(x, mean)
 	// convert to an int
 	x_int := new(big.Int)

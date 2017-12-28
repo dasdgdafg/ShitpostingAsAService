@@ -10,6 +10,7 @@ import (
 	"math/rand"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -26,6 +27,8 @@ var messages = make(map[string][]string)
 var sedRegex = regexp.MustCompile("^s/.*/.*/.*$")
 
 var xmasRegex = regexp.MustCompile("^(\\d,?\\d?)?(>)?!(?:c|C)hristmas$")
+
+var diceRegex = regexp.MustCompile("^!(\\d+)d(\\d+)$")
 
 func processLine(linesToSend chan<- string, nick string, channel string, msg string) {
 	if chains[channel] != nil {
@@ -67,6 +70,10 @@ func processLine(linesToSend chan<- string, nick string, channel string, msg str
 			toAdd := matches[1:]
 			line = strings.Join(toAdd, "") + line
 		}
+		linesToSend <- "PRIVMSG " + channel + " :" + line
+	}
+	if diceRegex.MatchString(msg) {
+		line := diceResult(msg)
 		linesToSend <- "PRIVMSG " + channel + " :" + line
 	}
 }
@@ -120,6 +127,22 @@ func main() {
 		MessageHandler: processLine,
 	}
 	bot.Run()
+}
+
+func diceResult(msg string) string {
+	matches := diceRegex.FindStringSubmatch(msg)
+	num, err := strconv.ParseInt(matches[1], 10, 64)
+	if err != nil {
+		return "Unable to parse int64 from " + matches[1]
+	}
+	sides, err := strconv.ParseInt(matches[2], 10, 64)
+	if err != nil {
+		return "Unable to parse int64 from " + matches[2]
+	}
+	if sides == 0 {
+		return "Dice must have at least 1 side"
+	}
+	return rollDice(sides, num)
 }
 
 //https://stackoverflow.com/questions/33633168/how-to-insert-a-character-every-x-characters-in-a-string-in-golang
