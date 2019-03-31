@@ -142,7 +142,7 @@ func diceResult(msg string) string {
 		return "Unable to parse int64 from " + matches[2]
 	}
 	if sides == 0 {
-		return "Dice must have at least 1 side"
+		return "0"
 	}
 	return rollDice(sides, num)
 }
