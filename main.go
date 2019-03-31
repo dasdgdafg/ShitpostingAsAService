@@ -28,7 +28,7 @@ var sedRegex = regexp.MustCompile("^s/.*/.*/.*$")
 
 var xmasRegex = regexp.MustCompile("^(\\d,?\\d?)?(>)?!(?:c|C)hristmas$")
 
-var diceRegex = regexp.MustCompile("^!(\\d+)d(\\d+)$")
+var diceRegex = regexp.MustCompile("^!(\\d*)d(\\d+)$")
 
 func processLine(linesToSend chan<- string, nick string, channel string, msg string) {
 	if chains[channel] != nil {
@@ -132,7 +132,9 @@ func main() {
 func diceResult(msg string) string {
 	matches := diceRegex.FindStringSubmatch(msg)
 	num, err := strconv.ParseInt(matches[1], 10, 64)
-	if err != nil {
+	if matches[1] == "" {
+		num = 1
+	} else if err != nil {
 		return "Unable to parse int64 from " + matches[1]
 	}
 	sides, err := strconv.ParseInt(matches[2], 10, 64)
