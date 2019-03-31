@@ -17,7 +17,7 @@ Also posts a random link from a text file.  Make a file with the links (to, for 
 #### !1d6
 Roll dice
 
-The number of dice must be in [0, 2^63-1], and the sides per die must be in [1, 2^63-1].  If more than 1000000 dice are rolled, the result is approximated by using a normal distribution.  The dice code uses math/big (\*Float).Sqrt, which is currently only in the beta version of go (1.10beta1).
+The number of dice must be in [0, 2^63-1], and the sides per die must be in [0, 2^63-1].  If more than 1000000 dice are rolled, the result is approximated by using a normal distribution.  The dice code uses math/big (\*Float).Sqrt, which is was added in go 1.10.
 
 ### Examples
 (Using the sample logs for #test)
@@ -40,7 +40,7 @@ The number of dice must be in [0, 2^63-1], and the sides per die must be in [1, 
   
   
 >\<dasdgdafg> !christmas  
->\<ShitpostingAsAService> 67 days until Christmas https://a.safe.moe/fkn4t.png  
+>\<ShitpostingAsAService> 67 days until Christmas https://files.catbox.moe/9nz3td.png  
   
   
 >\<dasdgdafg> !1d20  
